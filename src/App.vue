@@ -199,10 +199,16 @@ table {
     --pac-item--border: #252525;
     --pac-container-text-color: ;
     --pac-query: var(--text-primary-color);
+
+    --input-text-color: var(--text-primary-color);
   }
 
   .place {
     background-color: var(--place-card-background-color);
+  }
+
+  input {
+    color: var(--input-text-color);
   }
 }
 
