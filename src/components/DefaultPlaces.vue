@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-  name: "HelloWorld",
+  name: "DefaultPlaces",
   data() {
     return {
       defaultPlaces: [
@@ -22,8 +22,8 @@ export default {
         // name: 'The Garage',
         "ChIJ7RMVtf3EyIARW8scUrFqPGA",
 
-        // name: "Hamburger Mary's",
-        "ChIJ1Qpl0fzEyIARnHzKYOHk1uY"
+        // name: "The Garden",
+        "ChIJ0YYEo-7DyIARzQ9iD13F9Q4"
 
         // name: 'Las Vegas Eagle',
         // 'ChIJoWGOKzTFyIARpTHBPbAaVDA'
@@ -32,9 +32,8 @@ export default {
   },
   methods: {},
   mounted: function() {
-    var arr = this.defaultPlaces.join(",");
-    this.$router.push({ path: `/places/${arr}?title=Vegas%20Gay%20Bars` });
+    var defaultPlaces = this.defaultPlaces.join(",");
+    this.$router.push({ path: `/places/${defaultPlaces}?title=Vegas%20Gay%20Bars` });
   }
 };
 </script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->

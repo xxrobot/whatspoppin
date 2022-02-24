@@ -419,7 +419,7 @@ Array.prototype.rotate = (function() {
 
   return function(count) {
     var len = this.length >>> 0,
-    //eslint-disable-next-line
+      //eslint-disable-next-line
       count = count >> 0;
 
     unshift.apply(this, splice.call(this, count % len, len));
@@ -427,8 +427,7 @@ Array.prototype.rotate = (function() {
   };
 })();
 </script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
+<style lang="scss" scoped>
 .hours-graph,
 .hours-none {
   margin-top: 1rem;
@@ -476,12 +475,6 @@ Array.prototype.rotate = (function() {
   100% {
     background-position-x: 0;
   }
-}
-
-.places {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .place {

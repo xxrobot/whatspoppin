@@ -315,8 +315,13 @@ export default {
   }
 };
 </script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.places {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 input[type="text"] {
   box-sizing: border-box;
   padding: 0.5rem;
