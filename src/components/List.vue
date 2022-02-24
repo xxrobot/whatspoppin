@@ -3,13 +3,15 @@
     <div
       class="collection-add-title"
       @click="editTitle"
-      v-show="collectionTitle.length === 0 && isEditingTitle===false"
+      v-show="collectionTitle.length === 0 && isEditingTitle === false"
     ></div>
     <div
       class="collection-title"
-      @click="isEditingTitle=true"
+      @click="isEditingTitle = true"
       v-show="!isEditingTitle"
-    >{{collectionTitle}}</div>
+    >
+      {{ collectionTitle }}
+    </div>
 
     <div v-show="isEditingTitle">
       <input
@@ -24,8 +26,13 @@
     <draggable
       v-model="places"
       :element="'ul'"
-      :options="{delay: 100, touchStartThreshold: 3, animation: 250, handle: '.hours-graph'}"
-      @start="drag=true"
+      :options="{
+        delay: 100,
+        touchStartThreshold: 3,
+        animation: 250,
+        handle: '.hours-graph',
+      }"
+      @start="drag = true"
       @end="onDragEnd"
       class="places"
     >
@@ -56,12 +63,21 @@
       <nav class="collection-links">
         <ul>
           <li v-for="(city, index) in cities" v-bind:key="index">
-            {{city.cityName}}
+            {{ city.cityName }}
             <ul class="collection-city">
-              <li v-for="(collection, index) in city.collections" v-bind:key="index">
+              <li
+                v-for="(collection, index) in city.collections"
+                v-bind:key="index"
+              >
                 <a
-                  v-bind:href="'/places/' + collection.placeIds + '?title=' + collection.displayName"
-                >{{ collection.displayName }}</a>
+                  v-bind:href="
+                    '/places/' +
+                      collection.placeIds +
+                      '?title=' +
+                      collection.displayName
+                  "
+                  >{{ collection.displayName }}</a
+                >
               </li>
             </ul>
           </li>
@@ -69,13 +85,15 @@
       </nav>
     </div>
     <div>
-      <a href="https://twitter.com/xxrobot" class="social-link">@xxRobot</a>&nbsp;
-      <a href="https://github.com/xxrobot/whatspoppin" class="social-link">GitHub</a>
+      <a href="https://twitter.com/xxrobot" class="social-link">@xxRobot</a
+      >&nbsp;
+      <a href="https://github.com/xxrobot/whatspoppin" class="social-link"
+        >GitHub</a
+      >
     </div>
   </div>
 </template>
 <script>
-// import Place from 'Place'
 import Place from "./Place.vue";
 import VueGoogleAutocomplete from "vue-google-autocomplete";
 import draggable from "vuedraggable";
@@ -85,7 +103,7 @@ export default {
   components: {
     place: Place,
     VueGoogleAutocomplete,
-    draggable
+    draggable,
   },
   data() {
     return {
@@ -106,8 +124,8 @@ export default {
                 "ChIJjRyfDa3FyIARXJ9Mi8poXDw",
                 "ChIJiZSbAa3FyIAR1-VJHOeI60w",
                 "ChIJ7RMVtf3EyIARW8scUrFqPGA",
-                "ChIJ1Qpl0fzEyIARnHzKYOHk1uY"
-              ]
+                "ChIJ1Qpl0fzEyIARnHzKYOHk1uY",
+              ],
             },
             {
               displayName: "Ramen",
@@ -116,8 +134,8 @@ export default {
                 "ChIJFW4uB77GyIAR2L9jh42VF38",
                 "ChIJBxV89s3GyIARdRSRkZuiRDI",
                 "ChIJc0pn2RzByIARixb07Ed0wfo",
-                "ChIJiSV9azrEyIAR72KhZkJvKjE"
-              ]
+                "ChIJiSV9azrEyIAR72KhZkJvKjE",
+              ],
             },
             {
               displayName: "Costco",
@@ -125,23 +143,33 @@ export default {
                 "ChIJ65oh-_LQyIARiKfmgHdipf4",
                 "ChIJn5FUr0y-yIARfCWlUvOgWcI",
                 "ChIJRVMwXurryIARfXySBa3wknY",
-                "ChIJ68OMAkDNyIAR2IvcqiNWVc0"
-              ]
+                "ChIJ68OMAkDNyIAR2IvcqiNWVc0",
+              ],
             },
             {
               displayName: "Downtown Bars",
               placeIds: [
+                // Rebar
                 "ChIJhU_yio_DyIARpQGpcw5ZS0k",
-                "ChIJxU0e84_DyIARELiEw8h1n-w",
-                "ChIJCeq4d33EyIARtUyOjvaNnfQ",
-                "ChIJFVgScHXDyIARJMhG-JF5cIU",
-                "ChIJyY-QApDDyIARQlMZbA6YYd0",
-                "ChIJhUHRX5rqyIAR1NOZQG0bwqM",
-                "ChIJ44w1UIXDyIAR4Gj6uVkFoPY",
-                "ChIJddY3lprDyIAR8QYE97F2XPY",
                 // Able Baker
-                "ChIJI-7R1BPRyIARWArciDNbsSc"
-              ]
+                "ChIJI-7R1BPRyIARWArciDNbsSc",
+                // Cornish
+                "ChIJCeq4d33EyIARtUyOjvaNnfQ",
+                // Berlin
+                "ChIJnZzX3S3DyIARTNSf4WN8jbs",
+                // Horse Trailer Hideout
+                "ChIJvUACDknDyIARCgOcD1hvvBU",
+                // Hard Hat Lounge
+                "ChIJ1wRv-YvDyIARqf-3Jwcmsng",
+                // Hop Nuts
+                "ChIJyY-QApDDyIARQlMZbA6YYd0",
+                // Tenaya Creek
+                "ChIJhUHRX5rqyIAR1NOZQG0bwqM",
+                // Esther's
+                "ChIJ44w1UIXDyIAR4Gj6uVkFoPY",
+                // Three Sheets
+                "ChIJAQA8SoXDyIARf1c7WOWIRCM",
+              ],
             },
             {
               displayName: "Downtown Coffee",
@@ -153,29 +181,29 @@ export default {
                 // Makers & Finders
                 "ChIJyY-QApDDyIARAuN4Vd8aYhQ",
                 // Mothership
-                "ChIJkbda4CXDyIARSGNPfnmbb-4"
-              ]
+                "ChIJkbda4CXDyIARSGNPfnmbb-4",
+              ],
             },
             {
               displayName: "Downtown Lunch",
               placeIds: [
                 // Tacotarian
                 "ChIJE7jV_vDDyIARmErr0TQTa-0",
-                // D E Thai
+                // DE Thai
                 "ChIJr6G3MoXDyIARdhKCxXCjlZo",
-                //PublicUs
+                // PublicUs
                 "ChIJM7jaCHHDyIARPHMuFhyy8hI",
-                //Bronze Cafe at ReBar
-                // "ChIJPyK6r3XDyIARJb01WQewoyc",
                 // Cornish Pasty
                 "ChIJCeq4d33EyIARtUyOjvaNnfQ",
+                // Able Baker
+                "ChIJI-7R1BPRyIARWArciDNbsSc",
                 // Capriotties Sahara
                 "ChIJBdLqqHXEyIARZ5K8Sz5w5ks",
-                // Capriotties Regional Justic Center
-                "ChIJpdu2w57DyIARAOQhegrBKkg"
-              ]
-            }
-          ]
+                // Capriotties Maryland/Charleston
+                "ChIJwf0j2ZTDyIARyGGi3jMhuPg",
+              ],
+            },
+          ],
         },
         {
           cityName: "Austin",
@@ -195,30 +223,12 @@ export default {
                 "ChIJHVQ9FmaoXIYR0HHxV16KFgc",
                 "ChIJi1wGI9O0RIYRptZhcRFaglw",
                 "ChIJuzq2ZpdLW4YRZ_qwsv7d0jM",
-                "ChIJVd1o8OBJW4YR7Py7JSE6utk"
-              ]
+                "ChIJVd1o8OBJW4YR7Py7JSE6utk",
+              ],
             },
-            {
-              displayName: "Torchy's Tacos again",
-              placeIds: [
-                "ChIJh_3dRvu0RIYRLBSOysYanEY",
-                "ChIJs0xtzooyW4YRkVD_-fc3JhI",
-                "ChIJlVQKQ8pHW4YRnjH4ppBUFQE",
-                "ChIJyXNZn9s5W4YRsN39PEkzP_w",
-                "ChIJm_b1tV_KRIYRP8fuxEG-rDk",
-                "ChIJ3fhWWeAsW4YRRAQLRAew5CY",
-                "ChIJz4sPdQDKRIYRnfLvHUhLOgg",
-                "ChIJg239z-m0RIYRp2mpN1qppiU",
-                "ChIJazq3RmzLRIYRmkc3uz-VRYw",
-                "ChIJHVQ9FmaoXIYR0HHxV16KFgc",
-                "ChIJi1wGI9O0RIYRptZhcRFaglw",
-                "ChIJuzq2ZpdLW4YRZ_qwsv7d0jM",
-                "ChIJVd1o8OBJW4YR7Py7JSE6utk"
-              ]
-            }
-          ]
-        }
-      ]
+          ],
+        },
+      ],
     };
   },
   computed: {},
@@ -231,7 +241,7 @@ export default {
       this.isEditingTitle = false;
       this.$router.push({
         path: this.$route.path,
-        query: { title: this.collectionTitle }
+        query: { title: this.collectionTitle },
       });
     },
     collectionUrl(collection) {
@@ -280,7 +290,7 @@ export default {
       this.currentDay = this.moment(this.currentDay, "ddd")
         .add(1, "day")
         .format("ddd");
-    }
+    },
   },
   mounted: function() {
     this.initPlaces();
@@ -288,30 +298,22 @@ export default {
   },
 
   watch: {
-    $route(to, from) {
+    $route() {
       this.initPlaces();
     },
-    collectionTitle(oldTitle, newTitle) {
+    collectionTitle() {
       document.title = this.collectionTitle + " | Lunch.report";
-    }
-  }
+    },
+  },
 };
-
-Array.prototype.rotate = (function() {
-  var unshift = Array.prototype.unshift,
-    splice = Array.prototype.splice;
-
-  return function(count) {
-    var len = this.length >>> 0,
-      count = count >> 0;
-
-    unshift.apply(this, splice.call(this, count % len, len));
-    return this;
-  };
-})();
 </script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
+<style lang="scss" scoped>
+.places {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 input[type="text"] {
   box-sizing: border-box;
   padding: 0.5rem;
@@ -389,9 +391,6 @@ input[type="text"] {
 
   &:hover {
     text-decoration: underline;
-  }
-
-  &:visited {
   }
 }
 </style>
