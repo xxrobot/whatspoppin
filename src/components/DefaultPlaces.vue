@@ -33,7 +33,9 @@ export default {
   methods: {},
   mounted: function() {
     var defaultPlaces = this.defaultPlaces.join(",");
-    this.$router.push({ path: `/places/${defaultPlaces}?title=Vegas%20Gay%20Bars` });
+    this.$router.push({
+      path: `/places/${defaultPlaces}?title=Vegas%20Gay%20Bars`
+    });
   }
 };
 </script>
