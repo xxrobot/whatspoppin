@@ -169,8 +169,6 @@ export default {
                 "ChIJ44w1UIXDyIAR4Gj6uVkFoPY",
                 // Three Sheets
                 "ChIJAQA8SoXDyIARf1c7WOWIRCM",
-                //Artifice
-                "ChIJddY3lprDyIAR8QYE97F2XPY",
               ],
             },
             {
@@ -191,18 +189,18 @@ export default {
               placeIds: [
                 // Tacotarian
                 "ChIJE7jV_vDDyIARmErr0TQTa-0",
-                // D E Thai
+                // DE Thai
                 "ChIJr6G3MoXDyIARdhKCxXCjlZo",
-                //PublicUs
+                // PublicUs
                 "ChIJM7jaCHHDyIARPHMuFhyy8hI",
-                //Bronze Cafe at ReBar
-                // "ChIJPyK6r3XDyIARJb01WQewoyc",
                 // Cornish Pasty
                 "ChIJCeq4d33EyIARtUyOjvaNnfQ",
+                // Able Baker
+                "ChIJI-7R1BPRyIARWArciDNbsSc",
                 // Capriotties Sahara
                 "ChIJBdLqqHXEyIARZ5K8Sz5w5ks",
-                // Capriotties Regional Justic Center
-                "ChIJpdu2w57DyIARAOQhegrBKkg",
+                // Capriotties Maryland/Charleston
+                "ChIJwf0j2ZTDyIARyGGi3jMhuPg",
               ],
             },
           ],
@@ -212,24 +210,6 @@ export default {
           collections: [
             {
               displayName: "Torchy's Tacos",
-              placeIds: [
-                "ChIJh_3dRvu0RIYRLBSOysYanEY",
-                "ChIJs0xtzooyW4YRkVD_-fc3JhI",
-                "ChIJlVQKQ8pHW4YRnjH4ppBUFQE",
-                "ChIJyXNZn9s5W4YRsN39PEkzP_w",
-                "ChIJm_b1tV_KRIYRP8fuxEG-rDk",
-                "ChIJ3fhWWeAsW4YRRAQLRAew5CY",
-                "ChIJz4sPdQDKRIYRnfLvHUhLOgg",
-                "ChIJg239z-m0RIYRp2mpN1qppiU",
-                "ChIJazq3RmzLRIYRmkc3uz-VRYw",
-                "ChIJHVQ9FmaoXIYR0HHxV16KFgc",
-                "ChIJi1wGI9O0RIYRptZhcRFaglw",
-                "ChIJuzq2ZpdLW4YRZ_qwsv7d0jM",
-                "ChIJVd1o8OBJW4YR7Py7JSE6utk",
-              ],
-            },
-            {
-              displayName: "Torchy's Tacos again",
               placeIds: [
                 "ChIJh_3dRvu0RIYRLBSOysYanEY",
                 "ChIJs0xtzooyW4YRkVD_-fc3JhI",
