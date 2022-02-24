@@ -3,13 +3,15 @@
     <div
       class="collection-add-title"
       @click="editTitle"
-      v-show="collectionTitle.length === 0 && isEditingTitle===false"
+      v-show="collectionTitle.length === 0 && isEditingTitle === false"
     ></div>
     <div
       class="collection-title"
-      @click="isEditingTitle=true"
+      @click="isEditingTitle = true"
       v-show="!isEditingTitle"
-    >{{collectionTitle}}</div>
+    >
+      {{ collectionTitle }}
+    </div>
 
     <div v-show="isEditingTitle">
       <input
@@ -24,8 +26,13 @@
     <draggable
       v-model="places"
       :element="'ul'"
-      :options="{delay: 100, touchStartThreshold: 3, animation: 250, handle: '.hours-graph'}"
-      @start="drag=true"
+      :options="{
+        delay: 100,
+        touchStartThreshold: 3,
+        animation: 250,
+        handle: '.hours-graph'
+      }"
+      @start="drag = true"
       @end="onDragEnd"
       class="places"
     >
@@ -56,12 +63,21 @@
       <nav class="collection-links">
         <ul>
           <li v-for="(city, index) in cities" v-bind:key="index">
-            {{city.cityName}}
+            {{ city.cityName }}
             <ul class="collection-city">
-              <li v-for="(collection, index) in city.collections" v-bind:key="index">
+              <li
+                v-for="(collection, index) in city.collections"
+                v-bind:key="index"
+              >
                 <a
-                  v-bind:href="'/places/' + collection.placeIds + '?title=' + collection.displayName"
-                >{{ collection.displayName }}</a>
+                  v-bind:href="
+                    '/places/' +
+                      collection.placeIds +
+                      '?title=' +
+                      collection.displayName
+                  "
+                  >{{ collection.displayName }}</a
+                >
               </li>
             </ul>
           </li>
@@ -69,13 +85,15 @@
       </nav>
     </div>
     <div>
-      <a href="https://twitter.com/xxrobot" class="social-link">@xxRobot</a>&nbsp;
-      <a href="https://github.com/xxrobot/whatspoppin" class="social-link">GitHub</a>
+      <a href="https://twitter.com/xxrobot" class="social-link">@xxRobot</a
+      >&nbsp;
+      <a href="https://github.com/xxrobot/whatspoppin" class="social-link"
+        >GitHub</a
+      >
     </div>
   </div>
 </template>
 <script>
-// import Place from 'Place'
 import Place from "./Place.vue";
 import VueGoogleAutocomplete from "vue-google-autocomplete";
 import draggable from "vuedraggable";
@@ -288,30 +306,17 @@ export default {
   },
 
   watch: {
-    $route(to, from) {
+    $route() {
       this.initPlaces();
     },
-    collectionTitle(oldTitle, newTitle) {
+    collectionTitle() {
       document.title = this.collectionTitle + " | Lunch.report";
     }
   }
 };
-
-Array.prototype.rotate = (function() {
-  var unshift = Array.prototype.unshift,
-    splice = Array.prototype.splice;
-
-  return function(count) {
-    var len = this.length >>> 0,
-      count = count >> 0;
-
-    unshift.apply(this, splice.call(this, count % len, len));
-    return this;
-  };
-})();
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
+<style lang="scss" scoped>
 input[type="text"] {
   box-sizing: border-box;
   padding: 0.5rem;
@@ -389,9 +394,6 @@ input[type="text"] {
 
   &:hover {
     text-decoration: underline;
-  }
-
-  &:visited {
   }
 }
 </style>

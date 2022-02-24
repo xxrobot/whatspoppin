@@ -1,7 +1,10 @@
 <template>
   <li
     class="place"
-    v-bind:class="{'loading' : data.status === 'loading', 'loaded' : data.status !== 'loading'}"
+    v-bind:class="{
+      loading: data.status === 'loading',
+      loaded: data.status !== 'loading'
+    }"
   >
     <div>
       <div class="graph">
@@ -12,15 +15,19 @@
           v-bind:key="index"
         >
           <div class="day-navigation">
-            <button @click="$emit('go-to-yesterday')" class="change-day">◂</button>
-            <div class="day-label">{{day.day}}</div>
+            <button @click="$emit('go-to-yesterday')" class="change-day">
+              ◂
+            </button>
+            <div class="day-label">{{ day.day }}</div>
             <div class="place-name-container">
-              <span class="place-name">{{data.name}}</span>
+              <span class="place-name">{{ data.name }}</span>
               <span @click="removePlace(id)" class="remove-place">✕</span>
             </div>
-            <button @click="$emit('go-to-tomorrow')" class="change-day">▸</button>
+            <button @click="$emit('go-to-tomorrow')" class="change-day">
+              ▸
+            </button>
           </div>
-          <div class="place-address">{{data.formatted_address}}</div>
+          <div class="place-address">{{ data.formatted_address }}</div>
 
           <div class="hours-graph">
             <!-- Good Data -->
@@ -28,20 +35,27 @@
               v-for="(hour, index) in day.hours"
               v-bind:key="index"
               class="hour"
-              v-show="data.status === 'loading' || data.status==='ok'"
+              v-show="data.status === 'loading' || data.status === 'ok'"
             >
               <div class="progressbar">
                 <div
                   class="progressbar-fill now"
-                  v-if="data.now && data.now.hour == hour.hour && today() == day.day"
+                  v-if="
+                    data.now && data.now.hour == hour.hour && today() == day.day
+                  "
                   v-bind:style="{ height: data.now.percentage + '%' }"
                 ></div>
-                <div class="progressbar-fill" v-bind:style="{ height: hour.percentage + '%' }"></div>
+                <div
+                  class="progressbar-fill"
+                  v-bind:style="{ height: hour.percentage + '%' }"
+                ></div>
               </div>
               <div
                 class="hour-label"
-                v-bind:class="[ hour.hour >= 12 ? 'hour-pm': 'hour-am']"
-              >{{hour.hour | twelveHour}}</div>
+                v-bind:class="[hour.hour >= 12 ? 'hour-pm' : 'hour-am']"
+              >
+                {{ hour.hour | twelveHour }}
+              </div>
             </div>
             <!-- End Good Data -->
             <div class="daylight-gradient"></div>
@@ -53,16 +67,18 @@
             <div></div>
 
             <div class="place-name-container">
-              <span class="place-name">{{data.name}}</span>
+              <span class="place-name">{{ data.name }}</span>
               <span @click="removePlace(id)" class="remove-place">✕</span>
             </div>
             <div></div>
           </div>
-          <div class="place-address">{{data.formatted_address}}</div>
+          <div class="place-address">{{ data.formatted_address }}</div>
 
           <div class="hours-none">
-            <div class="hours-error">{{data.message}}</div>
-            <div class="place-remove" @click="removePlace(id)">Remove Place?</div>
+            <div class="hours-error">{{ data.message }}</div>
+            <div class="place-remove" @click="removePlace(id)">
+              Remove Place?
+            </div>
           </div>
         </div>
 
@@ -73,7 +89,6 @@
 </template>
 <script>
 import axios from "axios";
-import moment from "moment";
 
 export default {
   name: "Place",
@@ -306,8 +321,8 @@ export default {
     };
   },
   computed: {
-    day(){
-      return this.currentDay
+    day() {
+      return this.currentDay;
     },
     id() {
       return this.placeId;
@@ -364,18 +379,18 @@ export default {
         .catch(error => {
           vm.isLoaded = true;
           vm.childLoading = false;
-          console.log("Fetch Error :-S", err);
+          console.log("Fetch Error: ", error);
         });
     },
     today: function() {
       return this.moment().format("ddd");
-    },
+    }
   },
   mounted: function() {
     this.getPlace();
   },
   watch: {
-    id(oldId, newId) {
+    id() {
       this.getPlace();
     }
   },
@@ -404,6 +419,7 @@ Array.prototype.rotate = (function() {
 
   return function(count) {
     var len = this.length >>> 0,
+    //eslint-disable-next-line
       count = count >> 0;
 
     unshift.apply(this, splice.call(this, count % len, len));
@@ -440,7 +456,7 @@ Array.prototype.rotate = (function() {
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
-.loading .daylight-gradient{
+.loading .daylight-gradient {
   animation-fill-mode: both;
   animation-timing-function: ease-in-out;
   animation: daylight-loading 2s;
@@ -448,7 +464,7 @@ Array.prototype.rotate = (function() {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .loading .daylight-gradient{
+  .loading .daylight-gradient {
     animation: none;
   }
 }
@@ -475,7 +491,7 @@ Array.prototype.rotate = (function() {
   max-width: 400px;
   min-height: 191px;
   background-color: var(--place-card-background-color);
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
 
 .progressbar {
@@ -497,9 +513,9 @@ Array.prototype.rotate = (function() {
 
 .loaded .progressbar {
   background-color: var(--progressbar-background-color);
-   transition: background-color 0s;
-  
-  &:hover{
+  transition: background-color 0s;
+
+  &:hover {
     background-color: var(--progressbar-hover-background-color);
   }
 }
@@ -569,14 +585,8 @@ $elements: 24;
     background-color: rgba(252, 252, 252, 1);
   }
   10% {
-    background-color: rgba(252, 252, 252, 0.0);
+    background-color: rgba(252, 252, 252, 0);
   }
-  // 50% {
-  //   background-color: rgba(252, 252, 252, .3);
-  // }
-  // 85% {
-  //   background-color: rgba(252, 252, 252, .30);
-  // }
   100% {
     background-color: rgba(252, 252, 252, 1);
   }
@@ -636,7 +646,7 @@ $elements: 24;
   background-color: var(--hour-pm-background-color);
 }
 
-.place-name-container{
+.place-name-container {
   display: flex;
   font-weight: bold;
   padding-left: 14px; /* offset close button*/
@@ -663,7 +673,7 @@ $elements: 24;
 .remove-place {
   opacity: 0;
   cursor: pointer;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
 .place:hover .remove-place {
